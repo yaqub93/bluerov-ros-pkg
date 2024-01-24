@@ -3,17 +3,20 @@
 <launch>
   <!-- roscore automatically started by roslaunch -->
   <arg name="fcu_url" default="/dev/pixhawk:115200"/>
-  <arg name="gcs_url" default=""/>
+  <arg name="gcs_url" default="udp://0.0.0.0:14550"/>
 
   <!-- start publishing transforms -->
   <include file="$(find bluerov)/launch/description.launch" />
 
   <!-- start mavlink -->
-  <include file="$(find bluerov)/launch/apm.launch" />
+  <include file="$(find bluerov)/launch/apm.launch" >
+    <arg name="fcu_url" value="$(arg fcu_url)"/>
+    <arg name="gcs_url" value="$(arg gcs_url)"/>
+  </include>
 
   <!-- start imu odometry -->
   <include file="$(find bluerov)/launch/imu_odom.launch" />
 
   <!-- start raspi camera -->
-  <include file="$(find bluerov)/launch/raspi_camera.launch" />
+  <!--include file="$(find bluerov)/launch/raspi_camera.launch" /-->
 </launch>
