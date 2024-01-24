@@ -2,6 +2,8 @@
 
 <launch>
   <!-- roscore automatically started by roslaunch -->
+  <arg name="fcu_url" default="/dev/pixhawk:115200"/>
+  <arg name="gcs_url" default=""/>
 
   <!-- start publishing transforms -->
   <include file="$(find bluerov)/launch/description.launch" />
